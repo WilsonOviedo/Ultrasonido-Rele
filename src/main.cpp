@@ -2,58 +2,45 @@
 
 #define pinEcho 4
 #define pinTrig 5
-#define pinRele 2
+#define pinRele_1 2
+#define pinRele_2 3
+
+#define ON LOW
+#define OFF HIGH
+
+#define distanciaTrig 75
 
 unsigned long timeSaved=0;
 
+#include "funciones.h"
 
 
-long lect_Ultrasonico()
-{
-  long duracion, distancia;
-
-  /* Hacer el disparo */
-  digitalWrite(pinTrig, LOW);
-  delayMicroseconds(2);
-  digitalWrite(pinTrig, HIGH); // Flanco ascendente
-  delayMicroseconds(10);          // Duracion del pulso
-  digitalWrite(pinTrig, LOW);  // Flanco descendente
-
- 
-  /* Recepcion del eco de respuesta */
-  duracion = pulseIn(pinEcho, HIGH);
-
-  /* Calculo de la distancia efectiva */
-  distancia = (duracion / 2) / 29;
-  if(distancia>500){
-    distancia=500;
-  }
-Serial.println(distancia);
-  return distancia;
-}
 
 void setup() {
   pinMode(pinTrig,OUTPUT);
   pinMode(pinEcho,INPUT);
-  pinMode(pinRele,OUTPUT);
-  digitalWrite(pinRele,LOW);
+  pinMode(pinRele_1,OUTPUT);
+  digitalWrite(pinRele_1,LOW);
+  pinMode(pinRele_2,OUTPUT);
+  digitalWrite(pinRele_2,LOW);
+
   timeSaved = millis();
   Serial.begin(9600);
 }
 
 void loop() {
 
-  if (lect_Ultrasonico()<75)
+  if (lect_Ultrasonico()<distanciaTrig)
   {
     timeSaved=millis();
-    digitalWrite(pinRele,HIGH);
+    on();
 
   }
  //Serial.println((((millis()-timeSaved)/1000)));
 
   if (((millis()-timeSaved)/1000)>=25)
   {
-    digitalWrite(pinRele,LOW);
+    off();
   }
   
   if (timeSaved > millis())
