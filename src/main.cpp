@@ -10,42 +10,40 @@
 
 #define distanciaTrig 75
 
-unsigned long timeSaved=0;
+unsigned long timeSaved = 0;
 
 #include "funciones.h"
 
-
-
-void setup() {
-  pinMode(pinTrig,OUTPUT);
-  pinMode(pinEcho,INPUT);
-  pinMode(pinRele_1,OUTPUT);
-  digitalWrite(pinRele_1,LOW);
-  pinMode(pinRele_2,OUTPUT);
-  digitalWrite(pinRele_2,LOW);
+void setup()
+{
+  pinMode(pinTrig, OUTPUT);
+  pinMode(pinEcho, INPUT);
+  pinMode(pinRele_1, OUTPUT);
+  digitalWrite(pinRele_1, LOW);
+  pinMode(pinRele_2, OUTPUT);
+  digitalWrite(pinRele_2, LOW);
 
   timeSaved = millis();
   Serial.begin(9600);
 }
 
-void loop() {
+void loop()
+{
 
-  if (lect_Ultrasonico()<distanciaTrig)
+  if (lect_Ultrasonico() < distanciaTrig)
   {
-    timeSaved=millis();
+    timeSaved = millis();
     on();
-
   }
- //Serial.println((((millis()-timeSaved)/1000)));
+  //Serial.println((((millis()-timeSaved)/1000)));
 
-  if (((millis()-timeSaved)/1000)>=25)
+  if (((millis() - timeSaved) / 1000) >= 25)
   {
     off();
   }
-  
+
   if (timeSaved > millis())
   {
-    timeSaved=millis();
+    timeSaved = millis();
   }
-  
 }
