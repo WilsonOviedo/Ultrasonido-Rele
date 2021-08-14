@@ -1,3 +1,9 @@
+int distancia_filtrado = 0;
+int adc_raw = 0;
+#define alpha 0.03   //Alpha
+#define pin PA7      //Pin de lectura
+
+
 //Funcion de lectura
 long lect_Ultrasonico()
 {
@@ -19,8 +25,12 @@ long lect_Ultrasonico()
     {
         distancia = 500;
     }
-    //Serial.println(distancia);
-    return distancia;
+
+    adc_raw = distancia;
+   distancia_filtrado = (alpha*adc_raw) + ((1-alpha)*distancia_filtrado);
+   
+    Serial.println(distancia_filtrado);
+    return distancia_filtrado;
 }
 
 void on()

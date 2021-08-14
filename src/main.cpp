@@ -8,10 +8,12 @@
 #define ON LOW
 #define OFF HIGH
 
-#define distanciaTrig 75
+#define distanciaTrig 90
 
 unsigned long timeSaved = 0;
+long distAnt[3];
 
+bool flag = true;
 #include "funciones.h"
 
 void setup()
@@ -19,12 +21,13 @@ void setup()
   pinMode(pinTrig, OUTPUT);
   pinMode(pinEcho, INPUT);
   pinMode(pinRele_1, OUTPUT);
-  digitalWrite(pinRele_1, LOW);
+  digitalWrite(pinRele_1, OFF);
   pinMode(pinRele_2, OUTPUT);
-  digitalWrite(pinRele_2, LOW);
+  digitalWrite(pinRele_2, OFF);
 
   timeSaved = millis();
   Serial.begin(9600);
+  lect_Ultrasonico();
 }
 
 void loop()
@@ -33,13 +36,24 @@ void loop()
   if (lect_Ultrasonico() < distanciaTrig)
   {
     timeSaved = millis();
-    on();
+    if (flag==true)
+    {
+      on();
+      flag=false;
+    }
+    
+    
   }
   //Serial.println((((millis()-timeSaved)/1000)));
 
   if (((millis() - timeSaved) / 1000) >= 25)
   {
-    off();
+    if (flag==false)
+    {
+      off();
+      flag=true;
+    }
+    
   }
 
   if (timeSaved > millis())
