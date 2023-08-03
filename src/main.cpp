@@ -36,24 +36,21 @@ void loop()
   if (lect_Ultrasonico() < distanciaTrig)
   {
     timeSaved = millis();
-    if (flag==true)
+    if (flag == true)
     {
       on();
-      flag=false;
+      flag = false;
     }
-    
-    
   }
-  //Serial.println((((millis()-timeSaved)/1000)));
+  // Serial.println((((millis()-timeSaved)/1000)));
 
   if (((millis() - timeSaved) / 1000) >= 25)
   {
-    if (flag==false)
+    if (flag == false)
     {
       off();
-      flag=true;
+      flag = true;
     }
-    
   }
 
   if (timeSaved > millis())
