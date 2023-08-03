@@ -1,7 +1,6 @@
 int distancia_filtrado = 0;
 int adc_raw = 0;
 #define alpha 0.03   //Alpha
-#define pin PA7      //Pin de lectura
 
 
 //Funcion de lectura
@@ -47,4 +46,8 @@ void off()
     delay(500);
     digitalWrite(pinRele_2, OFF);
     delay(500);
+}
+
+int calculoTrimpot(){
+    return (analogRead(pinTrimpot)*500)/1023;
 }

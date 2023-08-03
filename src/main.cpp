@@ -1,17 +1,19 @@
 #include <Arduino.h>
 
-#define pinEcho 4
-#define pinTrig 5
+#define pinEcho 7
+#define pinTrig 8
 #define pinRele_1 2
 #define pinRele_2 3
+#define pinTrimpot A1
 
-#define ON LOW
-#define OFF HIGH
+#define ON HIGH
+#define OFF LOW
 
 #define distanciaTrig 60
 
 unsigned long timeSaved = 0;
 long distAnt[3];
+int distanciaMax = 0;
 
 bool flag = true;
 #include "funciones.h"
@@ -32,8 +34,9 @@ void setup()
 
 void loop()
 {
+  distanciaMax = calculoTrimpot();
 
-  if (lect_Ultrasonico() < distanciaTrig)
+  if (lect_Ultrasonico() < distanciaMax)
   {
     timeSaved = millis();
     if (flag == true)
