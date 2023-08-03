@@ -8,7 +8,7 @@
 #define ON LOW
 #define OFF HIGH
 
-#define distanciaTrig 90
+#define distanciaTrig 60
 
 unsigned long timeSaved = 0;
 long distAnt[3];
