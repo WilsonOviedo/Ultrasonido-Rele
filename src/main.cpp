@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
 #define pinEcho 7
-#define pinTrig 8
+//#define pinTrig 8
 #define pinRele_1 2
 #define pinRele_2 3
 #define pinTrimpot A1
@@ -20,11 +20,12 @@ bool flag = true;
 
 void setup()
 {
-  pinMode(pinTrig, OUTPUT);
+  //pinMode(pinTrig, OUTPUT);
   pinMode(pinEcho, INPUT);
   pinMode(pinRele_1, OUTPUT);
   digitalWrite(pinRele_1, OFF);
   pinMode(pinRele_2, OUTPUT);
+  pinMode(LED_BUILTIN,OUTPUT);
   digitalWrite(pinRele_2, OFF);
 
   timeSaved = millis();
@@ -34,10 +35,11 @@ void setup()
 
 void loop()
 {
-  //distanciaMax = calculoTrimpot();
-  Serial.println(lect_Ultrasonico());
-}
-  /*
+  distanciaMax = calculoTrimpot();
+  //Serial.print("Trig: ");
+  //Serial.println(distanciaMax);
+
+  
   //Serial.print("gg");
 //Serial.println(distanciaMax);
   if (lect_Ultrasonico() < distanciaMax)
@@ -64,4 +66,4 @@ void loop()
   {
     timeSaved = millis();
   }
-}*/
+}
