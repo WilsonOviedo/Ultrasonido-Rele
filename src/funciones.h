@@ -1,6 +1,7 @@
 int distancia_filtrado = 0;
 int adc_raw = 0;
-#define alpha 0.03   //Alpha
+//#define alpha 0.03   //Alpha
+#define alpha 1   //Alpha
 
 
 //Funcion de lectura
@@ -19,16 +20,17 @@ long lect_Ultrasonico()
     duracion = pulseIn(pinEcho, HIGH);
 
     /* Calculo de la distancia efectiva */
-    distancia = (duracion / 2) / 29;
+    distancia = duracion*0.034/2;
+    
     if (distancia > 500)
     {
         distancia = 500;
     }
 
     adc_raw = distancia;
-   distancia_filtrado = (alpha*adc_raw) + ((1-alpha)*distancia_filtrado);
+   //distancia_filtrado = (alpha*adc_raw) + ((1-alpha)*distancia_filtrado);
    
-    Serial.println(distancia_filtrado);
+    Serial.println(duracion);
     return distancia_filtrado;
 }
 

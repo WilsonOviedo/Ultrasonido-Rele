@@ -34,8 +34,12 @@ void setup()
 
 void loop()
 {
-  distanciaMax = calculoTrimpot();
-
+  //distanciaMax = calculoTrimpot();
+  Serial.println(lect_Ultrasonico());
+}
+  /*
+  //Serial.print("gg");
+//Serial.println(distanciaMax);
   if (lect_Ultrasonico() < distanciaMax)
   {
     timeSaved = millis();
@@ -60,4 +64,4 @@ void loop()
   {
     timeSaved = millis();
   }
-}
+}*/
