@@ -36,12 +36,9 @@ void setup()
 void loop()
 {
   distanciaMax = calculoTrimpot();
-  //Serial.print("Trig: ");
-  //Serial.println(distanciaMax);
+  Serial.print("Trig: ");
+  Serial.println(distanciaMax);
 
-  
-  //Serial.print("gg");
-//Serial.println(distanciaMax);
   if (lect_Ultrasonico() < distanciaMax)
   {
     timeSaved = millis();
@@ -51,7 +48,6 @@ void loop()
       flag = false;
     }
   }
-  // Serial.println((((millis()-timeSaved)/1000)));
 
   if (((millis() - timeSaved) / 1000) >= 25)
   {

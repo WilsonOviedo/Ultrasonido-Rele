@@ -21,11 +21,7 @@ long lect_Ultrasonico()
 
     /* Calculo de la distancia efectiva */
      distancia = (duracion / 2) / 29;
-  /* 
-    if (distancia > 500)
-    {
-        distancia = 500;
-    }*/
+
 
     adc_raw = distancia;
    distancia_filtrado = (alpha*adc_raw) + ((1-alpha)*distancia_filtrado);
