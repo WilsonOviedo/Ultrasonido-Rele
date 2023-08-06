@@ -36,7 +36,7 @@ void on()
     delay(500);
     digitalWrite(pinRele_1, OFF);
     delay(500);
-    digitalWrite(LED_BUILTIN,ON);
+    digitalWrite(LED_BUILTIN,HIGH);
 }
 
 void off()
@@ -45,7 +45,7 @@ void off()
     delay(500);
     digitalWrite(pinRele_2, OFF);
     delay(500);
-    digitalWrite(LED_BUILTIN,OFF);
+    digitalWrite(LED_BUILTIN,LOW);
 }
 
 int calculoTrimpot(){

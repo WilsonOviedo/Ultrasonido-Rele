@@ -6,8 +6,8 @@
 #define pinRele_2 3
 #define pinTrimpot A1
 
-#define ON HIGH
-#define OFF LOW
+#define ON LOW
+#define OFF HIGH
 
 #define distanciaTrig 60
 
