@@ -28,9 +28,20 @@ void setup()
   pinMode(LED_BUILTIN,OUTPUT);
   digitalWrite(pinRele_2, OFF);
 
+while (true)
+{
+  digitalWrite(pinEcho,HIGH);
+  delay(1000);
+  digitalWrite(pinEcho,LOW);
+  delay(1000);
+}
+
+
   timeSaved = millis();
   Serial.begin(9600);
   lect_Ultrasonico();
+
+
 }
 
 void loop()
