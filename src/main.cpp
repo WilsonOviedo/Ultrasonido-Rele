@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-#define pinEcho 7
+#define pinEcho 7 //4
 //#define pinTrig 8
 #define pinRele_1 2
 #define pinRele_2 3
@@ -14,6 +14,7 @@
 unsigned long timeSaved = 0;
 long distAnt[3];
 int distanciaMax = 0;
+int lecturaSensor=0;
 
 bool flag = true;
 #include "funciones.h"
@@ -28,29 +29,27 @@ void setup()
   pinMode(LED_BUILTIN,OUTPUT);
   digitalWrite(pinRele_2, OFF);
 
-while (true)
-{
-  digitalWrite(pinEcho,HIGH);
-  delay(1000);
-  digitalWrite(pinEcho,LOW);
-  delay(1000);
-}
+
 
 
   timeSaved = millis();
   Serial.begin(9600);
-  lect_Ultrasonico();
+  //lect_Sensor();
+  off();
 
 
 }
 
 void loop()
 {
-  distanciaMax = calculoTrimpot();
-  Serial.print("Trig: ");
+  //distanciaMax = calculoTrimpot();
+  distanciaMax = 300;
+  lecturaSensor=lect_Sensor();
+  Serial.print(",");
   Serial.println(distanciaMax);
+  //Serial.println(distanciaMax);
 
-  if (lect_Ultrasonico() < distanciaMax)
+  if (lecturaSensor>distanciaMax)
   {
     timeSaved = millis();
     if (flag == true)
